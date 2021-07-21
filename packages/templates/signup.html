@@ -9,13 +9,14 @@
     background: url(../static/pencil.jpg);
   "
 >
-  <form class="form-signin">
+  <form class="form-signin" method="post">
     <i class="fas fa-desktop fa-3x"></i>
     <h1 class="h2 mb-3 font-weight-normal">SIGN UP</h1>
     <label for="inputuser">User Name:</label>
     <input
       type="text"
       id="inputuser"
+      name="inputuser"
       class="form-control"
       placeholder="User Name"
       required
@@ -26,6 +27,7 @@
     <input
       type="email"
       id="inputEmail"
+      name="inputEmail"
       class="form-control"
       placeholder="Email address"
       required
@@ -36,6 +38,7 @@
     <input
       type="password"
       id="inputPassword"
+      name="inputPassword"
       class="form-control"
       placeholder="Password"
       required
@@ -45,12 +48,13 @@
     <input
       type="password"
       id="inputPasswordcheck"
+      name="inputPasswordcheck"
       class="form-control"
       placeholder="Password"
       required
     />
-    <br>
-    <br>
+    <br />
+    <br />
     <button class="btn btn-lg btn-primary btn-block" type="submit">
       Sign in
     </button>
