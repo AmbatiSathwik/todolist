@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block title %}signup{% endblock %} {% block content
+%}
+<div
+  class="bg-light"
+  style="
+    padding: 25px;
+    border: 2px solid black;
+    margin-top: 250px;
+    background: url(../static/pencil.jpg);
+  "
+>
+  <form class="form-signin">
+    <i class="fas fa-desktop fa-3x"></i>
+    <h1 class="h2 mb-3 font-weight-normal">LOGIN UP</h1>
+    <label for="inputuser">Username:</label>
+    <input
+      type="text"
+      id="inputuser"
+      class="form-control"
+      placeholder="Username"
+      required
+      autofocus
+    />
+    <label for="inputPassword">Password:</label>
+    <input
+      type="password"
+      id="inputPassword"
+      class="form-control"
+      placeholder="Password"
+      required
+    />
+    <div class="checkbox mb-3">
+      <label> <input type="checkbox" value="remember-me" /> Remember me </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Login in
+    </button>
+    <br />
+    <p class="text-center">Not registered?<a href="/signup">signup here</a></p>
+    <p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
+  </form>
+</div>
+{% endblock %}
