@@ -1,4 +1,4 @@
-from package import create_app
+from packages import create_app
 from flask import render_template
 
 app = create_app()
