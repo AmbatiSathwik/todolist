@@ -4,7 +4,6 @@ CREATE TABLE details(
     id serial PRIMARY KEY,
     username TEXT,
     email TEXT,
-    username TEXT,
     updated date,
     password VARCHAR(20)
 );
