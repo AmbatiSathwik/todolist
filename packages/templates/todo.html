@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %}ToDo List{% endblock %} {% block link
+%}<link
+  rel="stylesheet"
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
+/>
+{% endblock %} {% block content %}
+<div class="form-group">
+  <h1>To-Do <small>List</small></h1>
+  <form role="form" method="post">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Your Task"
+      name="task"
+    />
+    <br />
+    <label for="date">When to complete:</label>
+    <input type="date" class="form-control" id="date" name="date" />
+    <button type="submit" class="btn btn btn-success">Add</button>
+  </form>
+</div>
+<div></div>
+<ul class="list-unstyled list-group" id="todo">
+  {% for list,dat in lists %}
+  <li class="list-group-item active">
+    {{list.title()}} {{dat}}
+    <div class="text-right">
+      <button type="button" class="btn btn-success">Remove</button>
+    </div>
+  </li>
+  <br />
+  {% endfor %}
+</ul>
+{% endblock %} {% block script %}
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+{% endblock %}

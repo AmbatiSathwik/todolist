@@ -34,7 +34,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
       rel="stylesheet"
     />
-
+    {% block link %}{% endblock %}
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body style="background-image: url(../static/bg.jpeg)">
@@ -76,24 +76,18 @@
       'error' %}
       <div
         role="alert"
-        class="alert alert-danger alert-dismiss fade show"
+        class="alert alert-danger alert-dismiss"
         style="margin-top: 100px"
       >
         {{ message }}
-        <button type="button" class="close" data-dismiss="alert">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       {% else %}
       <div
         role="alert"
-        class="alert alert-success alert-dismiss fade show"
+        class="alert alert-success alert-dismiss"
         style="margin-top: 100px"
       >
         {{ message }}
-        <button type="button" class="close" data-dismiss="alert">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       {% endif %} {% endfor %} {% endif %} {% endwith %}
     </div>
@@ -112,3 +106,4 @@
     <!-- Footer -->
   </body>
 </html>
+{% block script %}{% endblock %}

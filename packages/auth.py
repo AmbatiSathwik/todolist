@@ -36,6 +36,7 @@ def signup():
                         (username, email, password, date))
             conn.commit()
             cur.close()
+            return redirect(url_for("auth.login"))
     return render_template("signup.html")
 
 
@@ -54,9 +55,36 @@ def login():
             return redirect(url_for('auth.signup'))
         for p in passi:
             if password == p[0]:
-                return "<h1>Found</h1>"
+                return redirect(url_for("auth.todo", user=username))
             else:
                 flash('Password not correct.', category='error')
                 return redirect(url_for('auth.login'))
         cur.close()
     return render_template("login.html")
+
+
+@auth.route("/<user>", methods=['GET', 'POST'])
+def todo(user):
+    conn = db.get_db()
+    cur = conn.cursor()
+    if request.method == 'GET':
+        cur.execute(
+            "select notes,time from notes where usr in (select (id) from details where username= %s)", (user,))
+        lis = cur.fetchall()
+        cur.close()
+        date = dt.date.today()
+        return render_template("todo.html", lists=lis)
+    if request.method == 'POST':
+        note = request.form.get('task')
+        date = request.form.get('date')
+        dat = dt.date.today()
+        if not (note and date):
+            flash("Enter task and date.", category='error')
+            return redirect(url_for("auth.todo", user=user))
+        cur.execute("select id from details where username=%s", (user,))
+        id = cur.fetchone()
+        cur.execute(
+            "insert into notes(notes,time,usr) values (%s,%s,%s)", (note, date, id,))
+        conn.commit()
+        cur.close()
+        return redirect(url_for('auth.todo', user=user))
