@@ -9,6 +9,7 @@ CREATE TABLE details(
 );
 
 CREATE TABLE notes(
+    id serial PRIMARY KEY,
     notes TEXT,
     usr INTEGER,
     time date,
