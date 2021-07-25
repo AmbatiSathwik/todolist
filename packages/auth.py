@@ -69,11 +69,11 @@ def todo(user):
     cur = conn.cursor()
     if request.method == 'GET':
         cur.execute(
-            "select notes,time from notes where usr in (select (id) from details where username= %s)", (user,))
+            "select id,notes,time from notes where usr in (select (id) from details where username= %s) order by time", (user,))
         lis = cur.fetchall()
         cur.close()
         date = dt.date.today()
-        return render_template("todo.html", lists=lis)
+        return render_template("todo.html", lists=lis, date=date)
     if request.method == 'POST':
         note = request.form.get('task')
         date = request.form.get('date')
@@ -88,3 +88,14 @@ def todo(user):
         conn.commit()
         cur.close()
         return redirect(url_for('auth.todo', user=user))
+
+
+@auth.route("/delete/<id>", methods=['POST'])
+def delete(id):
+    conn = db.get_db()
+    cur = conn.cursor()
+    r_id = int(id)
+    cur.execute("delete from notes where id=%s", (r_id,))
+    conn.commit()
+    cur.close()
+    return redirect(url_for('auth.login'))

@@ -10,7 +10,7 @@
 {% endblock %} {% block content %}
 <div class="form-group">
   <h1>To-Do <small>List</small></h1>
-  <form role="form" method="post">
+  <form method="post">
     <input
       type="text"
       class="form-control"
@@ -25,16 +25,52 @@
 </div>
 <div></div>
 <ul class="list-unstyled list-group" id="todo">
-  {% for list,dat in lists %}
+  {% for id,list,dat in lists %} {% if date <= dat %}
   <li class="list-group-item active">
-    {{list.title()}} {{dat}}
+    <div class="row">
+      <div class="col">{{list.title()}}</div>
+      <div class="col">{{dat}}</div>
+    </div>
     <div class="text-right">
-      <button type="button" class="btn btn-success">Remove</button>
+      <button
+        class="btn btn-success btn-sm remove"
+        id="remove"
+        data-source="{{id}}"
+        value="{{id}}"
+        type="button"
+      >
+        Remove
+      </button>
     </div>
   </li>
   <br />
-  {% endfor %}
+  {% else %}
+  <li class="list-group-item text-white bg-danger">
+    <div class="row">
+      <div class="col">{{list.title()}}</div>
+      <div class="col">{{dat}}</div>
+    </div>
+    <div class="text-right">
+      <p class="text-left">This task is outdated</p>
+      <button
+        class="btn btn-success btn-sm remove"
+        id="remove"
+        onclick="del({{id}})"
+        value="{{id}}"
+        type="button"
+      >
+        Remove
+      </button>
+    </div>
+  </li>
+  <br />
+  {% endif %} {% endfor %}
 </ul>
 {% endblock %} {% block script %}
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"
+></script>
+<script src="../static/remove.js" type="text/javascript"></script>
 {% endblock %}
