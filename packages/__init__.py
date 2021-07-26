@@ -12,8 +12,4 @@ def create_app():
     app.config.from_object(__name__)
     app.register_blueprint(auth, url_prefix='/')
     db.init_app(app)
-
-    @app.route('/')
-    def home():
-        return render_template("home.html")
     return app
