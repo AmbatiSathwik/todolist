@@ -7,14 +7,14 @@ from flask import current_app, g
 from flask.cli import with_appcontext
 
 user = "weyjofmlbnfpsd"
-password  = "f740781f35fc7bdf5421b1c3e30ae7d9eefa09b0dd0f8c3fc8692095b3ea669d"
+password = "f740781f35fc7bdf5421b1c3e30ae7d9eefa09b0dd0f8c3fc8692095b3ea669d"
 host = "ec2-35-174-122-153.compute-1.amazonaws.com"
 
 
 def get_db():
     if 'db' not in g:
         dbname = current_app.config['DATABASE']
-        g.db = psycopg2.connect(f'dbname = {dbname}, user = {user}, password = {password} , host = {host}')
+        g.db = psycopg2.connect(f'dbname = {dbname}')
     return g.db
 
 

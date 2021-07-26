@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from .auth import auth
 from . import db
 
-DATABASE = 'd5kh8rbolevrrd'
+DATABASE = 'todo'
 DEBUG = True
 SECRET_KEY = 'sathwikisgreat'
 
