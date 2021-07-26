@@ -99,3 +99,31 @@ def delete(id):
     conn.commit()
     cur.close()
     return redirect(url_for('auth.login'))
+
+
+@auth.route("/<user>/today", methods=['POST', 'GET'])
+def today(user):
+    conn = db.get_db()
+    cur = conn.cursor()
+    if request.method == 'GET':
+        dat = dt.date.today()
+        cur.execute(
+            "select id,notes,time from notes where usr in (select (id) from details where username= %s) and time=%s", (user, dat,))
+        lis = cur.fetchall()
+        cur.close()
+        date = dt.date.today()
+        return render_template("todo.html", lists=lis, date=date)
+    if request.method == 'POST':
+        note = request.form.get('task')
+        date = request.form.get('date')
+        dat = dt.date.today()
+        if not (note and date):
+            flash("Enter task and date.", category='error')
+            return redirect(url_for("auth.todo", user=user))
+        cur.execute("select id from details where username=%s", (user,))
+        id = cur.fetchone()
+        cur.execute(
+            "insert into notes(notes,time,usr) values (%s,%s,%s)", (note, date, id,))
+        conn.commit()
+        cur.close()
+        return redirect(url_for('auth.todo', user=user))

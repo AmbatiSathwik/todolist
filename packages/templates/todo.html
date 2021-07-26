@@ -23,7 +23,12 @@
     <button type="submit" class="btn btn btn-success">Add</button>
   </form>
 </div>
-<div></div>
+<p class="text-center display-4">
+  To get today activities
+  <button class="btn btn-success btn-sm today" id="today" type="button">
+    Click here
+  </button>
+</p>
 <ul class="list-unstyled list-group" id="todo">
   {% for id,list,dat in lists %} {% if date <= dat %}
   <li class="list-group-item active">
@@ -66,6 +71,7 @@
   <br />
   {% endif %} {% endfor %}
 </ul>
+
 {% endblock %} {% block script %}
 <script
   src="https://code.jquery.com/jquery-3.6.0.js"
