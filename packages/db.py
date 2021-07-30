@@ -17,8 +17,12 @@ def get_db():
         dbname = url.path[1:]
         user = url.username
         password = url.password
-        host = url.hostname
-        g.db = psycopg2.connect(f'dbname = {dbname}, user = {user}, password= {password}, host = {host}')
+        #host = url.hostname
+        g.db = psycopg2.connect(dbname=dbname,
+            user=user,
+            password=password,
+            host=host
+            )
     return g.db
 
 
