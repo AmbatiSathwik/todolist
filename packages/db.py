@@ -13,8 +13,8 @@ host = "ec2-35-174-122-153.compute-1.amazonaws.com"
 
 def get_db():
     if 'db' not in g:
-        dbname = current_app.config['DATABASE']
-        g.db = psycopg2.connect(f'dbname = {dbname+"@ec2-35-174-122-153.compute-1.amazonaws.com:5432/d5kh8rbolevrrd"}, user = {user}, password= {password}, host = {host}')
+        dbname = current_app.config['DATABASE']+"@ec2-35-174-122-153.compute-1.amazonaws.com:5432/d5kh8rbolevrrd"
+        g.db = psycopg2.connect(f'dbname = {dbname}, user = {user}, password= {password}, host = {host}')
     return g.db
 
 
