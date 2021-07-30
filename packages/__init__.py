@@ -1,9 +1,10 @@
 from flask import Flask, render_template
 from .auth import auth
 from . import db
+import urllib.parse as urlparse
 import os
 
-DATABASE = os.environ.get('DATABASE_URL')
+URL =  urlparse.urlparse(os.environ['DATABASE_URL'])
 DEBUG = True
 SECRET_KEY = 'sathwikisgreat'
 
